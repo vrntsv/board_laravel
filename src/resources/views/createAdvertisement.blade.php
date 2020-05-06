@@ -5,6 +5,7 @@
     <br><br>
     <div class="container">
         <form action="submitAdCreation" method="post" id="locationForm" enctype="multipart/form-data">
+            @csrf
             <div class="row">
                 <div class="col">
                     <div class="panel panel-default">
@@ -98,65 +99,6 @@
         </form>
     </div>
 
-    <!-- Bootstrap core JavaScript -->
-    <script>
-        //var address = document.getElementById("map_address").value;
-
-        function toggleMap() {
-            var loc = document.getElementById("location");
-            if (loc.style.display === "none") {
-                loc.style.display = "block";
-                document.getElementById('addLocation').value = 'True';
-                document.getElementById('addLocationButton').innerHTML = 'Don`t add location';
-            } else {
-                loc.style.display = "none";
-                document.getElementById('addLocation').value = 'False';
-                document.getElementById('addLocationButton').innerHTML = 'Add location';
-
-            }
-        }
-
-
-        var geocoder;
-        var map;
-        var marker;
-
-        function initMap() {
-            var latitude = Number(document.getElementById("la").value);
-            var longitude = Number(document.getElementById("lo").value);
-            var uluru = {
-                lat: latitude,
-                lng: longitude
-            };
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 17,
-                center: uluru
-            });
-            marker = new google.maps.Marker({
-                map: map,
-                draggable: true,
-                animation: google.maps.Animation.DROP,
-                position: uluru
-            });
-
-            google.maps.event.addListener(marker, 'dragend',
-                function(marker) {
-
-                    var latLng = marker.latLng;
-                    currentLatitude = latLng.lat();
-                    currentLongitude = latLng.lng();
-                    $("#la").val(currentLatitude);
-                    $("#lo").val(currentLongitude);
-                    geocoder = new google.maps.Geocoder();
-                    codeAddress(geocoder, map);
-
-                }
-            );
-        }
-
-
-
-    </script>
     <script src="{{ URL::asset('js/jquery.js') }}" defer></script>
     <script src="{{ URL::asset('js/jquery.maskedinput.min.js') }}" defer></script>
     <script src="{{ URL::asset('js/masked_number_input.js') }}" defer></script>

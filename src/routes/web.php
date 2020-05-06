@@ -17,9 +17,9 @@ Route::get('/', function () {
     return redirect('/page/1');
 });
 Route::get('/page/{currentPage}', ['as' => 'posts', 'uses' => 'AdvertisementController@renderAllAds']);
-
 Route::get('/register', 'RegisterController@validator');
 Route::get('/createAd', 'AdvertisementController@renderAdCreationForm');
+Route::post('/submitAdCreation', 'AdvertisementController@submitAdCreationForm');
 
 Auth::routes();
 

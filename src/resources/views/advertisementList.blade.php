@@ -25,8 +25,7 @@
 
             <!-- Blog Entries Column -->
             <div class="col-md-8">
-
-            <?php if (!empty($data['items'])): ?>
+            <?php if (count($data) != 0): ?>
             <?php foreach ($data->reverse() as $post): ?>
             <!-- Blog Post -->
                 <div class="card mb-4">
