@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+
+#Route::get('/', 'AdvertisementController@renderAllAds');
+Route::get('/', ['as' => 'index', 'uses' => 'AdvertisementController@renderAllAds']);
 
 Route::get('/register', 'RegisterController@validator');
 
