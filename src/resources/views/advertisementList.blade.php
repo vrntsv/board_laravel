@@ -16,10 +16,6 @@
 
     ?>
 
-
-
-    <br>
-    <br>
     <br>
     <br>
     <!-- Page Content -->
@@ -30,7 +26,7 @@
             <!-- Blog Entries Column -->
             <div class="col-md-8">
 
-            <?php if (!empty($data)): ?>
+            <?php if (!empty($data['items'])): ?>
             <?php foreach ($data->reverse() as $post): ?>
             <!-- Blog Post -->
                 <div class="card mb-4">
@@ -68,7 +64,7 @@
 
                 <?php else: ?>
                 <h1 class="my-4">Sorry, no resent posts:(
-                    <p><a href="index.php?createAd"><small>Add new post</small></a></p>
+                    <p><a href="/createAd"><small>Add new post</small></a></p>
                 </h1>
 
                 <?php endif; ?>
