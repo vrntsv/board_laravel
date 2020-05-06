@@ -14,7 +14,7 @@
 
 
 #Route::get('/', 'AdvertisementController@renderAllAds');
-Route::get('/', ['as' => 'index', 'uses' => 'AdvertisementController@renderAllAds']);
+Route::get('/page/{currentPage}', ['as' => 'posts', 'uses' => 'AdvertisementController@renderAllAds']);
 
 Route::get('/register', 'RegisterController@validator');
 
