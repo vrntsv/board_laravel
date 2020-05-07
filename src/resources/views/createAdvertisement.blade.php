@@ -12,21 +12,20 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Add new Advertisement</h3>
                         </div>
+                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+
                         <div class="panel-body">
 
                             <div class="form-group">
                                 <label for="title">Title</label>
                                 <input type="text" name="title" id="title" class="form-control" maxlength=100 placeholder="Appartment for rent" required>
                             </div>
-
-
                             <div class="form-group">
                                 <label for="phone">Phone: </label>
-
                             </div>
+
                             <div class="row">
                                 <div class="col">
-
                                     <div class="form-group">
                                         <select id="country" class="form-control">
                                             <option value="ru"><img src="">Russia +7</option>
@@ -34,7 +33,6 @@
                                             <option value="usa">USA +1</option>
                                         </select>
                                     </div>
-
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
@@ -47,14 +45,13 @@
                                 <label for="title">Country</label>
                                 <input name="country" type="text" class="form-control" placeholder="Ukraine" required>
                             </div>
+
                             <div class="row">
                                 <div class="col">
-
                                     <div class="form-group">
                                         <label for="end_date">End date</label>
                                         <input type='text' name='end_date' id='end_date' class="datepicker-here form-control" data-position="right top" />
                                     </div>
-
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
@@ -63,6 +60,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label for="description">Description</label>
                                 <textarea name="description" class="form-control" placeholder="Enter the description" required></textarea>
@@ -70,12 +68,12 @@
 
                             <div class="form-group">
                                 <label for="image">Load image</label>
-                                <input type="file" id="image" name="image"
-                                       accept=".jpg, .jpeg, .png">
+                                <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png">
                             </div>
 
                         </div>
                     </div>
+
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Select the location</h3>
@@ -99,19 +97,13 @@
         </form>
     </div>
 
-    <script src="{{ URL::asset('js/jquery.js') }}" defer></script>
-    <script src="{{ URL::asset('js/jquery.maskedinput.min.js') }}" defer></script>
-    <script src="{{ URL::asset('js/masked_number_input.js') }}" defer></script>
-
-
-
-
-    <script src="{{ URL::asset('js/map_input.js') }}" defer></script>
-
-
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxuJt0FM7ceyYD6i5Y0XI_brWCTULYNd0&callback=initMap">
-    </script>
+<script src="{{ URL::asset('js/jquery.js') }}" defer></script>
+<script src="{{ URL::asset('js/jquery.maskedinput.min.js') }}" defer></script>
+<script src="{{ URL::asset('js/masked_number_input.js') }}" defer></script>
+<script src="{{ URL::asset('js/map_input.js') }}" defer></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxuJt0FM7ceyYD6i5Y0XI_brWCTULYNd0&callback=initMap">
+</script>
 
 
 

@@ -12,15 +12,16 @@
 */
 
 
-
+Auth::routes();
 Route::get('/', function () {
     return redirect('/page/1');
 });
 Route::get('/page/{currentPage}', ['as' => 'posts', 'uses' => 'AdvertisementController@renderAllAds']);
-Route::get('/register', 'RegisterController@validator');
-Route::get('/createAd', 'AdvertisementController@renderAdCreationForm');
-Route::post('/submitAdCreation', 'AdvertisementController@submitAdCreationForm');
+Route::get('/createAd', 'AdvertisementController@renderAdCreationForm')->middleware('auth');
+Route::get('/ad/{id}', 'AdvertisementController@renderAdById');
+Route::get('/updateAd/{id}', 'AdvertisementController@renderAdUpdateForm')->middleware('auth');
+Route::post('/submitAdCreation/', 'AdvertisementController@submitAdForm')->middleware('auth');
+Route::post('/submitAdCreation/{id}', 'AdvertisementController@submitAdForm')->middleware('auth');
+Route::post('/submitAdUpdate', 'AdvertisementController@submitAdForm')->middleware('auth');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
