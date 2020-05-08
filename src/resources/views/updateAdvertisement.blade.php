@@ -5,8 +5,6 @@
     <br><br>
     <div class="container">
         <form action="/submitAdCreation/{{$ad[0]->id}}" method="post" id="locationForm" enctype="multipart/form-data">
-
-
             @csrf
             <div class="row">
                 <div class="col">
@@ -18,7 +16,6 @@
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
                         <div class="panel-body">
-
                             <div class="form-group">
                                 <label for="title">Title</label>
                                 <input type="text" value="{{$ad[0]->title}}" name="title" id="title" class="form-control" maxlength=100 placeholder="Appartment for rent" required>
@@ -132,5 +129,5 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxuJt0FM7ceyYD6i5Y0XI_brWCTULYNd0&callback=initMap">
     </script>
 
-    
+
 @endsection
