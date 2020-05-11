@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @php var_dump($errors);@endphp
     <br><br>
     <div class="container">
         <form action="/submitAdCreation/{{$ad[0]->id}}" method="post" id="locationForm" enctype="multipart/form-data">
@@ -21,7 +20,6 @@
                                 @if (count($errors->get('title')))
                                     <input type="text" value="{{$ad[0]->title}}" name="title" id="title" class="form-control is-invalid" maxlength=100 placeholder="Appartment for rent" required>
                                     <div class="invalid-feedback">
-                                        {{$errors->get('title')[0]}}
                                     </div>
                                 @else
                                     <input type="text" value="{{$ad[0]->title}}" name="title" id="title" class="form-control" maxlength=100 placeholder="Appartment for rent" required>
@@ -47,7 +45,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        @if (count($errors->get('phone')))
+                                        @if (count($errors->get('phone')) > 0)
                                             <input id="phone" name="phone" value="{{$ad[0]->phone}}" type="text" class="form-control is-invalid" required>
                                             <div class="invalid-feedback">
                                                 {{$errors->get('phone')[0]}}
@@ -69,11 +67,11 @@
                                     <div class="form-group">
 
                                         <label for="end_date">End date</label>
-                                        @if (count($errors->get('end_date')))
+                                        @if (count($errors->get('end_date')) > 0)
                                             <input type='text' name='end_date' value="@php echo substr($ad[0]->end_date, 0, 10); @endphp" id='end_date' class="datepicker-here form-control is-invalid" data-position="right top" />
-{{--                                            <div class="invalid-feedback">--}}
-{{--                                                {{$errors->get('end_date')[0]}}--}}
-{{--                                            </div>--}}
+                                            <div class="invalid-feedback">
+                                                {{$errors->get('end_date')[0]}}
+                                            </div>
                                         @else
                                             <input type='text' name='end_date' value="@php echo substr($ad[0]->end_date, 0, 10); @endphp" id='end_date' class="datepicker-here form-control" data-position="right top" />
                                         @endif
@@ -83,7 +81,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="title">Email</label>
-                                        @if (count($errors->get('end_date')))
+                                        @if (count($errors->get('email')) > 0)
                                             <input name="email" type="email" value="{{$ad[0]->email}}" class="form-control is-invalid" placeholder="example@mail.com" required>
                                             <div class="invalid-feedback">
                                                 {{$errors->get('email')[0]}}
@@ -97,10 +95,11 @@
                             <div class="form-group">
 
                                 <label for="description">Description</label>
-                                @if (count($errors->get('end_date')))
+                                @if (count($errors->get('description')) > 0)
                                     <textarea name="description" class="form-control is-invalid" placeholder="Enter the description" required>{{$ad[0]->description}}</textarea>
                                     <div class="invalid-feedback">
-                                        {{$errors->get('end_date')[0]}}
+                                        {{$errors->get('description')[0]}}
+
                                     </div>
                                 @else
                                     <textarea name="description" class="form-control" placeholder="Enter the description" required>{{$ad[0]->description}}</textarea>
