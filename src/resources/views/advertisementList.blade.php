@@ -37,16 +37,16 @@
 
                 @endforeach
                         <ul class="pagination justify-content-center">
-                            <li class="page-item @if ($current_page == '1') {{'disabled'}} @endif">
-                                <a class="page-link" href="/page/@php echo strval((int)$current_page-1); @endphp">Предыдущая</a>
+                            <li class="page-item @if ($data->currentPage() == 1) {{'disabled'}} @endif">
+                                <a class="page-link" href="{{$data->previousPageUrl()}}">Предыдущая</a>
                             </li>
                             @for ($i = 1; $i < $last_page + 1; $i++)
-                                <li class="page-item @if ((int)$current_page == $i) @php echo "active"; @endphp @endif">
-                                    <a class="page-link" href="/page/<?php echo $i; ?>"><?php echo $i; ?></a>
+                                <li class="page-item @if ($data->currentPage() == $i) @php echo "active"; @endphp @endif">
+                                    <a class="page-link" href="{{$data->url($i)}}">@php echo $i; @endphp</a>
                                 </li>
                             @endfor
-                            <li class="page-item @if ((int)$current_page ==  (int)$last_page) @php echo "disabled"; @endphp @endif ">
-                                <a class="page-link" href="/page/@php echo strval((int)$current_page+1); @endphp">Следующая</a>
+                            <li class="page-item @if ($data->currentPage() == $data->lastPage()) @php echo "disabled"; @endphp @endif ">
+                                <a class="page-link" href="{{$data->nextPageUrl()}}">Следующая</a>
                             </li>
                         </ul>
             @else

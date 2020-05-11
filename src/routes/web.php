@@ -14,9 +14,9 @@
 
 Auth::routes();
 Route::get('/', function () {
-    return redirect('/page/1');
+    return redirect('/posts');
 });
-Route::get('/page/{currentPage}', ['as' => 'posts', 'uses' => 'AdvertisementController@renderAllAds']);
+Route::get('/posts', ['as' => 'posts', 'uses' => 'AdvertisementController@renderAllAds']);
 Route::get('/createAd', 'AdvertisementController@renderAdCreationForm')->middleware('auth');
 Route::get('/ad/{id}', 'AdvertisementController@renderAdById');
 Route::get('/updateAd/{id}', 'AdvertisementController@renderAdUpdateForm')->middleware('auth');

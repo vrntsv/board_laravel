@@ -1,15 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-{{--    @if (count($errors) > 0)--}}
-{{--        <div class="alert alert-danger">--}}
-{{--            <ul>--}}
-{{--                @foreach ($errors->all() as $error)--}}
-{{--                    <li>{{ $error }}</li>--}}
-{{--                @endforeach--}}
-{{--            </ul>--}}
-{{--        </div>--}}
-{{--    @endif    --}}
     <div class="container">
         <form action="submitAdCreation" method="post" id="locationForm" enctype="multipart/form-data">
             @csrf
@@ -105,11 +96,13 @@
 
                                 <label for="description">Description</label>
                                 @if (count($errors->get('description')))
-
                                     <textarea name="description" class="form-control is-invalid" placeholder="Enter the description" required></textarea>
                                     <div class="invalid-feedback">
                                         {{$errors->get('description')[0]}}
                                     </div>
+                                @else
+                                    <textarea name="description" class="form-control" placeholder="Enter the description" required></textarea>
+                                @endif
                             </div>
 
                             <div class="form-group">
@@ -150,8 +143,7 @@
 <script src="{{ URL::asset('js/masked_number_input.js') }}" defer></script>
 <script src="{{ URL::asset('js/map_input.js') }}" defer></script>
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxuJt0FM7ceyYD6i5Y0XI_brWCTULYNd0&callback=initMap">
-</script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxuJt0FM7ceyYD6i5Y0XI_brWCTULYNd0&callback=initMap"/>
 
 
 

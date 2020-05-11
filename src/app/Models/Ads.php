@@ -4,7 +4,7 @@
 namespace App;
 use Carbon\Carbon;
 
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Ads extends Model
@@ -43,21 +43,10 @@ class Ads extends Model
     }
 
 
-
-    public function getAllAds($currentPage)
+    public function getAllAds()
     {
-
-        if ($currentPage == 1) {
-            $lower = $currentPage - 1;
-
-        } else {
-            $lower = ($currentPage - 1) * 15;
-        }
-
-        $upper = $lower + 15;
-        $ad = Ads::skip($lower)->take($upper)->get();
+        $ad = DB::table('ads')->paginate(15);
         return $ad;
-
     }
 
     public function getLastPage()
