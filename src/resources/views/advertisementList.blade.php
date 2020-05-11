@@ -32,7 +32,7 @@
                                 <p class="card-text">@php echo checkTextOverflow($post->description); @endphp</p>
                             </div>
                             <div class="card-footer text-muted">
-                                Publication date:  @php echo substr($post->date_posted, 0,  10); @endphp
+                                Publication date:  {{$post->date_posted}}
                             </div>
                     </div>
 
@@ -50,7 +50,7 @@
                                 <a class="page-link" href="/page/@php echo strval((int)$current_page+1); @endphp">Следующая</a>
                             </li>
                         </ul>
-            @else:
+            @else
                 <h1 class="my-4">Sorry, no resent posts:(
                     <p><a href="/createAd"><small>Add new post</small></a></p>
                 </h1>

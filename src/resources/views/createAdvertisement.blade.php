@@ -1,11 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <br><br>
+{{--    @if (count($errors) > 0)--}}
+{{--        <div class="alert alert-danger">--}}
+{{--            <ul>--}}
+{{--                @foreach ($errors->all() as $error)--}}
+{{--                    <li>{{ $error }}</li>--}}
+{{--                @endforeach--}}
+{{--            </ul>--}}
+{{--        </div>--}}
+{{--    @endif    --}}
     <div class="container">
         <form action="submitAdCreation" method="post" id="locationForm" enctype="multipart/form-data">
             @csrf
+            @php var_dump($errors) @endphp
             <div class="row">
                 <div class="col">
                     <div class="panel panel-default">
@@ -15,10 +23,16 @@
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
                         <div class="panel-body">
-
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" id="title" class="form-control" maxlength=100 placeholder="Appartment for rent" required>
+                                @if (count($errors->get('title')))
+                                    <input type="text" name="title" id="title" class="form-control is-invalid" maxlength=100 placeholder="Appartment for rent" required>
+                                    <div class="invalid-feedback">
+                                        {{$errors->get('title')[0]}}
+                                    </div>
+                                 @else
+                                    <input type="text" name="title" id="title" class="form-control" maxlength=100 placeholder="Appartment for rent" required>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="phone">Phone: </label>
@@ -36,27 +50,54 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <input id="phone" name="phone" type="text" class="form-control" required>
+                                        @if ($errors->get('phone'))
+                                            <input id="phone" name="phone" type="text" class="form-control is-invalid" required>
+                                            <div class="invalid-feedback">
+                                                {{$errors->get('phone')[0]}}
+                                            </div>
+                                        @else
+                                            <input id="phone" name="phone" type="text" class="form-control" required>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="title">Country</label>
-                                <input name="country" type="text" class="form-control" placeholder="Ukraine" required>
+                                <label for="country">Country</label>
+                                <select name="country" class="form-control" id="country">
+                                    <option>Russia</option>
+                                    <option>Ukraine</option>
+                                    <option>USA</option>
+                                </select>
                             </div>
 
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="end_date">End date</label>
-                                        <input type='text' name='end_date' id='end_date' class="datepicker-here form-control" data-position="right top" />
+                                        @if ($errors->get('end_date'))
+                                            <label for="end_date">End date</label>
+                                            <input type='text' name='end_date' id='end_date' class="datepicker-here form-control is-invalid" data-position="right top" />
+                                            <div class="invalid-feedback">
+                                                {{$errors->get('end_date')[0]}}
+                                            </div>
+                                        @else
+                                            <label for="end_date">End date</label>
+                                            <input type='text' name='end_date' id='end_date' class="datepicker-here form-control" data-position="right top" />
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="title">Email</label>
-                                        <input name="email" type="email" class="form-control" placeholder="example@mail.com" required>
+                                        @if ($errors->get('email'))
+                                            <label for="title">Email</label>
+                                            <input name="email" type="email" class="form-control is-invalid" placeholder="example@mail.com" required>
+                                            <div class="invalid-feedback">
+                                                {{$errors->get('email')[0]}}
+                                            </div>
+                                        @else
+                                            <label for="title">Email</label>
+                                            <input name="email" type="email" class="form-control" placeholder="example@mail.com" required>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -67,8 +108,10 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="image">Load image</label>
-                                <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="image" accept=".jpg, .jpeg, .png">
+                                    <label class="custom-file-label" for="image">Load image</label>
+                                </div>
                             </div>
 
                         </div>
