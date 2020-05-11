@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    @php var_dump($errors);@endphp
     <br><br>
     <div class="container">
         <form action="/submitAdCreation/{{$ad[0]->id}}" method="post" id="locationForm" enctype="multipart/form-data">
@@ -18,7 +18,14 @@
                         <div class="panel-body">
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" value="{{$ad[0]->title}}" name="title" id="title" class="form-control" maxlength=100 placeholder="Appartment for rent" required>
+                                @if (count($errors->get('title')))
+                                    <input type="text" value="{{$ad[0]->title}}" name="title" id="title" class="form-control is-invalid" maxlength=100 placeholder="Appartment for rent" required>
+                                    <div class="invalid-feedback">
+                                        {{$errors->get('title')[0]}}
+                                    </div>
+                                @else
+                                    <input type="text" value="{{$ad[0]->title}}" name="title" id="title" class="form-control" maxlength=100 placeholder="Appartment for rent" required>
+                                @endif
                             </div>
 
 
@@ -40,7 +47,14 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <input id="phone" name="phone" value="{{$ad[0]->phone}}" type="text" class="form-control" required>
+                                        @if (count($errors->get('phone')))
+                                            <input id="phone" name="phone" value="{{$ad[0]->phone}}" type="text" class="form-control is-invalid" required>
+                                            <div class="invalid-feedback">
+                                                {{$errors->get('phone')[0]}}
+                                            </div>
+                                        @else
+                                            <input id="phone" name="phone" value="{{$ad[0]->phone}}" type="text" class="form-control" required>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -53,31 +67,61 @@
                                 <div class="col">
 
                                     <div class="form-group">
+
                                         <label for="end_date">End date</label>
-                                        <input type='text' name='end_date' value="@php echo str_replace('-', '.', substr($ad[0]->end_date, 0, 10)); @endphp" id='end_date' class="datepicker-here form-control" data-position="right top" />
+                                        @if (count($errors->get('end_date')))
+                                            <input type='text' name='end_date' value="@php echo substr($ad[0]->end_date, 0, 10); @endphp" id='end_date' class="datepicker-here form-control is-invalid" data-position="right top" />
+{{--                                            <div class="invalid-feedback">--}}
+{{--                                                {{$errors->get('end_date')[0]}}--}}
+{{--                                            </div>--}}
+                                        @else
+                                            <input type='text' name='end_date' value="@php echo substr($ad[0]->end_date, 0, 10); @endphp" id='end_date' class="datepicker-here form-control" data-position="right top" />
+                                        @endif
                                     </div>
 
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="title">Email</label>
-                                        <input name="email" type="email" value="{{$ad[0]->email}}" class="form-control" placeholder="example@mail.com" required>
+                                        @if (count($errors->get('end_date')))
+                                            <input name="email" type="email" value="{{$ad[0]->email}}" class="form-control is-invalid" placeholder="example@mail.com" required>
+                                            <div class="invalid-feedback">
+                                                {{$errors->get('email')[0]}}
+                                            </div>
+                                        @else
+                                            <input name="email" type="email" value="{{$ad[0]->email}}" class="form-control" placeholder="example@mail.com" required>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
+
                                 <label for="description">Description</label>
-                                <textarea name="description" class="form-control" placeholder="Enter the description" required>{{$ad[0]->description}}</textarea>
+                                @if (count($errors->get('end_date')))
+                                    <textarea name="description" class="form-control is-invalid" placeholder="Enter the description" required>{{$ad[0]->description}}</textarea>
+                                    <div class="invalid-feedback">
+                                        {{$errors->get('end_date')[0]}}
+                                    </div>
+                                @else
+                                    <textarea name="description" class="form-control" placeholder="Enter the description" required>{{$ad[0]->description}}</textarea>
+                                @endif
                             </div>
 
                             <div class="form-group">
-                                <input type="hidden" value="{{$ad[0]->image}}" name="saved_image">
-                                <label for="image">Load new image</label>
-                                <input type="file"  id="image" name="image"
-                                       accept=".jpg, .jpeg, .png">
-                                @if ($ad[0]->image != null)
-                                    <input type="checkbox" name="delete_image" class="form-check-input" value="True">Delete image
-                                @endif
+                                <div class="input-group mb-3">
+                                    @if ($ad[0]->image != null)
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <input type="checkbox" name="delete_image"  value="True">   Delete image
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    <div class="custom-file">
+                                        <input type="file" name="image" class="custom-file-input" id="image" accept=".jpg, .jpeg, .png">
+                                        <label class="custom-file-label" for="image">Load new image</label>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>

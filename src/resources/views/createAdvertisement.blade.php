@@ -13,7 +13,6 @@
     <div class="container">
         <form action="submitAdCreation" method="post" id="locationForm" enctype="multipart/form-data">
             @csrf
-            @php var_dump($errors) @endphp
             <div class="row">
                 <div class="col">
                     <div class="panel panel-default">
@@ -103,13 +102,19 @@
                             </div>
 
                             <div class="form-group">
+
                                 <label for="description">Description</label>
-                                <textarea name="description" class="form-control" placeholder="Enter the description" required></textarea>
+                                @if (count($errors->get('description')))
+
+                                    <textarea name="description" class="form-control is-invalid" placeholder="Enter the description" required></textarea>
+                                    <div class="invalid-feedback">
+                                        {{$errors->get('description')[0]}}
+                                    </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="image" accept=".jpg, .jpeg, .png">
+                                    <input type="file" name="image" class="custom-file-input" id="image" accept=".jpg, .jpeg, .png">
                                     <label class="custom-file-label" for="image">Load image</label>
                                 </div>
                             </div>

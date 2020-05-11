@@ -14,7 +14,6 @@
     }
     @endphp
 
-    <br><br>
     <div class="container">
 
         <div class="row">
@@ -23,7 +22,7 @@
                 @foreach ($data->reverse() as $post)
                     <div class="card mb-4">
                         @if ($post->image)
-                            <img class="card-img-top" src="@php '/images/'.$post->image; @endphp">
+                            <img class="card-img-top" src="@php echo '/images/'.$post->image; @endphp">
                         @else
                             <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1280px-No_image_3x4.svg.png" alt="Card image cap">
                         @endif
@@ -32,7 +31,7 @@
                                 <p class="card-text">@php echo checkTextOverflow($post->description); @endphp</p>
                             </div>
                             <div class="card-footer text-muted">
-                                Publication date:  {{$post->date_posted}}
+                                Publication date:  @php echo substr($post->date_posted, 0,  10); @endphp
                             </div>
                     </div>
 

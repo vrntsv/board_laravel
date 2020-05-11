@@ -15,6 +15,7 @@ class Ads extends Model
     protected $increment = true;
     const CREATED_AT = 'date_posted';
     protected $table = 'ads';
+    public $timestamps = false;
     protected $casts = [
         'user_id' => 'integer',
         'title' => 'string',
@@ -26,7 +27,6 @@ class Ads extends Model
     ];
 
     protected $dates = [
-        '',
         'end_date'
     ];
 
