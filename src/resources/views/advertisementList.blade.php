@@ -14,28 +14,30 @@
     }
     @endphp
 
-    <div class="container">
+        <div class="album py-5">
+            <div class="container">
+                @if (count($data) != 0)
 
-        <div class="row">
-            <div class="col-md-8">
-            @if (count($data) != 0)
-                @foreach ($data->reverse() as $post)
-                    <div class="card mb-4">
-                        @if ($post->image)
-                            <img class="card-img-top" src="@php echo '/images/'.$post->image; @endphp">
-                        @else
-                            <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1280px-No_image_3x4.svg.png" alt="Card image cap">
-                        @endif
-                            <div class="card-body">
-                                <a href="/ad/{{$post->id}}"> <h2 class="card-title">{{$post->title}}</h2></a>
-                                <p class="card-text">@php echo checkTextOverflow($post->description); @endphp</p>
+                    <div class="row">
+                        @foreach ($data->reverse() as $post)
+                            <div class="col-md-4">
+                                <div class="card mb-4 box-shadow">
+                                    @if ($post->image)
+                                        <img class="card-img-top" src="@php echo '/images/'.$post->image; @endphp">
+                                    @else
+                                        <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1280px-No_image_3x4.svg.png" alt="Card image cap">
+                                    @endif
+                                    <div class="card-body">
+                                        <a href="/ad/{{$post->id}}"> <h2 class="card-title">{{$post->title}}</h2></a>
+                                        <p class="card-text">@php echo checkTextOverflow($post->description); @endphp</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <small class="text-muted">@php echo substr($post->date_posted, 0,  10); @endphp</small>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-footer text-muted">
-                                Publication date:  @php echo substr($post->date_posted, 0,  10); @endphp
-                            </div>
+                        @endforeach
                     </div>
-
-                @endforeach
                         <ul class="pagination justify-content-center">
                             <li class="page-item @if ($data->currentPage() == 1) {{'disabled'}} @endif">
                                 <a class="page-link" href="{{$data->previousPageUrl()}}">Предыдущая</a>
@@ -49,18 +51,14 @@
                                 <a class="page-link" href="{{$data->nextPageUrl()}}">Следующая</a>
                             </li>
                         </ul>
-            @else
-                <h1 class="my-4">Sorry, no resent posts:(
-                    <p><a href="/createAd"><small>Add new post</small></a></p>
-                </h1>
-            @endif
+                    @else
+                        <h1 class="my-4">Sorry, no resent posts:(
+                            <p><a href="/createAd"><small>Add new post</small></a></p>
+                        </h1>
+                    @endif
+            </div>
         </div>
 
 
-
-    </div>
-
-<script src="public/assets/vendor/jquery/jquery.min.js"></script>
-<script src="public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 @endsection
