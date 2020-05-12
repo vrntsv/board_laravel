@@ -58,8 +58,12 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="title">Country</label>
-                                <input name="country" type="text" value="{{$ad[0]->country}}" class="form-control" placeholder="Ukraine" required>
+                                <label for="country">Country</label>
+                                <select name="country" class="form-control" id="country">
+                                    <option>Russia</option>
+                                    <option>Ukraine</option>
+                                    <option>USA</option>
+                                </select>
                             </div>
                             <div class="row">
                                 <div class="col">
