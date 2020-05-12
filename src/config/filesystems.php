@@ -63,6 +63,9 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
+        'links' => [
+            public_path('images') => storage_path('app/public/storage/images'),
+        ],
 
     ],
 

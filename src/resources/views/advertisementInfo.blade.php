@@ -25,7 +25,7 @@
             <hr>
 
             @if ($ad[0]->image)
-                <img class="card-img-top" src="@php echo '/images/'.$ad[0]->image; @endphp">
+                <img class="card-img-top" src="@php echo asset('storage/images/'.$ad[0]->image); @endphp">
             @else
                 <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1280px-No_image_3x4.svg.png" alt="Card image cap">
             @endif
@@ -34,7 +34,7 @@
             <h3 class="mt-4">Description:  </h3>
             <p>{{ $ad[0]->description }}</p>
             <br>
-            @if ($ad[0]->latitude != 0 and  $ad[0]->longitude != 0)
+            @if ($ad[0]->latitude and  $ad[0]->longitude)
                 <h3 class="mt-4">Location:  </h3>
                 <div id="map"></div>
                 <input type="hidden" id="la" value="{{$ad[0]->latitude}}"/>

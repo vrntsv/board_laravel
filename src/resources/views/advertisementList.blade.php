@@ -23,16 +23,16 @@
                             <div class="col-md-4">
                                 <div class="card mb-4 box-shadow">
                                     @if ($post->image)
-                                        <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="@php echo '/images/'.$post->image; @endphp">
+                                        <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="@php echo asset('storage/images/'.$post->image); @endphp">
                                     @else
                                         <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1280px-No_image_3x4.svg.png" alt="Card image cap">
                                     @endif
-                                    <div class="card-body">
+                                    <div class="card-body" style="height: 300px">
                                         <a href="/ad/{{$post->id}}"> <h2 class="card-title">{{$post->title}}</h2></a>
                                         <p class="card-text">@php echo checkTextOverflow($post->description); @endphp</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <small class="text-muted">@php echo substr($post->date_posted, 0,  10); @endphp</small>
-                                        </div>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        <small class="text-muted">Publication date: @php echo substr($post->date_posted, 0,  10); @endphp</small>
                                     </div>
                                 </div>
                             </div>

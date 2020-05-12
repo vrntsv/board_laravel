@@ -143,7 +143,8 @@
 <script src="{{ URL::asset('js/masked_number_input.js') }}" defer></script>
 <script src="{{ URL::asset('js/map_input.js') }}" defer></script>
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxuJt0FM7ceyYD6i5Y0XI_brWCTULYNd0&callback=initMap"/>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxuJt0FM7ceyYD6i5Y0XI_brWCTULYNd0&callback=initMap">
+</script>
 
 
 
