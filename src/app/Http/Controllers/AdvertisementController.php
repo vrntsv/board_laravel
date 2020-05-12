@@ -52,7 +52,7 @@ class AdvertisementController extends Controller
             'end_date' => 'required|date_format:Y-m-d|after:today',
             'description' => 'required'
         ]);
-
+        var_dump($_POST);
         if (array_key_exists('saved_image', $_POST) and !array_key_exists('delete_image', $_POST)){
             $uploadFileName = $request->input('saved_image');
         } else {

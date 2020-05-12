@@ -109,6 +109,7 @@
                             <div class="form-group">
                                 <div class="input-group mb-3">
                                     @if ($ad[0]->image != null)
+                                        <input type="hidden" name="saved_image"  value="{{$ad[0]->image}}">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <input type="checkbox" name="delete_image"  value="True">   Delete image
