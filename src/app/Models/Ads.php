@@ -45,15 +45,10 @@ class Ads extends Model
 
     public function getAllAds()
     {
-        $ad = DB::table('ads')->paginate(15);
+        $ad = DB::table('ads')->orderBy('id', 'DESC')->paginate(15);
         return $ad;
     }
 
-    public function getLastPage()
-    {
-        $count = Ads::all()->count();
-        return floor($count/15 + 1);
-    }
 
     public function getAdById($id)
     {
@@ -92,33 +87,6 @@ class Ads extends Model
         );
     }
 
-    public function updateAd(
-        $id,
-        $title,
-        $description,
-        $phone,
-        $country,
-        $email,
-        $endDate,
-        $image,
-        $latitude,
-        $longitude
-    )
-    {
 
-        Ads::where('id', $id)->update(
-            [
-                'title' => $title,
-                'description' => $description,
-                'end_date' => $endDate,
-                'image' => $image,
-                'phone' => $phone,
-                'email' => $email,
-                'country' => $country,
-                'latitude' => $latitude,
-                'longitude' => $longitude,
-            ]
-        );
-    }
 
 }

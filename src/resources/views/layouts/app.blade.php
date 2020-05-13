@@ -17,7 +17,8 @@
     <script src="{{ asset('js/datepicker/dist/js/datepicker.js') }}" defer></script>
     <link href="{{ asset('js/datepicker/dist/css/datepicker.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/map.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/intlTelInput.css') }}" rel="stylesheet">
+{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
@@ -51,10 +52,10 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                         @else
-                            <a class="nav-link" href="/page/1" role="button">
+                            <a class="nav-link" href="/" role="button">
                                 Home
                             </a>
-                            <a class="nav-link " href="/createAd" role="button">
+                            <a class="nav-link " href="{{route('posts.create')}}" role="button">
                                 Create Advertisement
                             </a>
                             <li class="nav-item dropdown">

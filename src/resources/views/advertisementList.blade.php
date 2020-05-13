@@ -19,7 +19,7 @@
                 @if (count($data) != 0)
 
                     <div class="row">
-                        @foreach ($data->reverse() as $post)
+                        @foreach ($data as $post)
                             <div class="col-md-4">
                                 <div class="card mb-4 box-shadow">
                                     @if ($post->image)
@@ -28,7 +28,7 @@
                                         <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1280px-No_image_3x4.svg.png" alt="Card image cap">
                                     @endif
                                     <div class="card-body" style="height: 300px">
-                                        <a href="/ad/{{$post->id}}"> <h2 class="card-title">{{$post->title}}</h2></a>
+                                        <a href="{{ route('posts.show', $post->id) }}"> <h2 class="card-title">{{$post->title}}</h2></a>
                                         <p class="card-text">@php echo checkTextOverflow($post->description); @endphp</p>
                                     </div>
                                     <div class="card-footer text-muted">
@@ -53,7 +53,7 @@
                         </ul>
                     @else
                         <h1 class="my-4">Sorry, no resent posts:(
-                            <p><a href="/createAd"><small>Add new post</small></a></p>
+                            <p><a href="{{route('posts.create')}}"><small>Add new post</small></a></p>
                         </h1>
                     @endif
             </div>

@@ -11,17 +11,9 @@
 |
 */
 
-
 Auth::routes();
-Route::get('/', function () {
-    return redirect('/posts');
-});
-Route::get('/posts', ['as' => 'posts', 'uses' => 'AdvertisementController@renderAllAds']);
-Route::get('/createAd', 'AdvertisementController@renderAdCreationForm')->middleware('auth');
-Route::get('/ad/{id}', 'AdvertisementController@renderAdById');
-Route::get('/updateAd/{id}', 'AdvertisementController@renderAdUpdateForm')->middleware('auth');
-Route::post('/submitAdCreation/', 'AdvertisementController@submitAdForm')->middleware('auth');
-Route::post('/submitAdCreation/{id}', 'AdvertisementController@submitAdForm')->middleware('auth');
-Route::post('/submitAdUpdate', 'AdvertisementController@submitAdForm')->middleware('auth');
+Route::get('/', 'AdvertisementController@index');
+Route::resource('posts', 'AdvertisementController', ['except' => 'index']);
+
 
 
