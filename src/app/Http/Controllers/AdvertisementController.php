@@ -32,7 +32,8 @@ class AdvertisementController extends Controller
     {
         $advertisementModel = new Ads();
         $advertisementData =  $advertisementModel->getAdById($id);
-        if (auth()->check() and auth()->user()->id == $advertisementData->user_id) {
+
+        if (auth()->check() and auth()->user()->id == $advertisementData[0]->user_id) {
             return view('updateAdvertisement', ['advertisementData' => $advertisementData]);
         } else {
             return redirect('/');
@@ -121,7 +122,7 @@ class AdvertisementController extends Controller
             }
             if ($request->file('image')) {
                 $file = $request->file('image');
-                $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/storage/images/';
+                $uploadDir = $_SERVER['DOCUMENT_ROOT'] . 'storage/images/';
                 $uploadFileName = $file->getClientOriginalName();
                 $file->move($uploadDir, $uploadFileName);
             }

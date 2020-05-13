@@ -51,7 +51,6 @@ return [
             'database' => env('DB_DATABASE', 'board_bwt'),
             'username' => env('DB_USERNAME', 'admin'),
             'password' => env('DB_PASSWORD', 'admin'),
-            'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    <link href="{{ asset('css/intlTelInput.css') }}" rel="stylesheet">
+
     <div class="container">
         <form action="{{route('posts.store')}}" method="post" id="locationForm" enctype="multipart/form-data">
             @csrf
@@ -147,7 +149,8 @@
 </script>
 <script src="{{ URL::asset('js/intlTelInput.js') }}" defer></script>
 <script src="{{ URL::asset('js/file_input.js') }}" defer></script>
-
+<script src="{{ asset('js/datepicker/dist/js/datepicker.js') }}" defer></script>
+<link href="{{ asset('js/datepicker/dist/css/datepicker.min.css') }}" rel="stylesheet">
 
 
 

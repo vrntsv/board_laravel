@@ -42,7 +42,7 @@ class Ads extends Model
         parent::__construct($attributes);
     }
 
-
+    
     public function getAllAds()
     {
         $ad = DB::table('ads')->orderBy('id', 'DESC')->paginate(15);
@@ -56,36 +56,6 @@ class Ads extends Model
         return $ad;
     }
 
-
-    public function createAd(
-        $userId,
-        $title,
-        $description,
-        $phone,
-        $country,
-        $email,
-        $endDate,
-        $image,
-        $latitude,
-        $longitude
-    )
-    {
-
-        Ads::insert(
-            [
-                'user_id' => $userId,
-                'title' => $title,
-                'description' => $description,
-                'end_date' => $endDate,
-                'image' => $image,
-                'phone' => $phone,
-                'email' => $email,
-                'country' => $country,
-                'latitude' => $latitude,
-                'longitude' => $longitude,
-            ]
-        );
-    }
 
 
 
